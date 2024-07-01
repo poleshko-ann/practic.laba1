@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
-    <height>436</height>
+    <width>842</width>
+    <height>488</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>0</y>
+      <x>30</x>
+      <y>10</y>
       <width>771</width>
       <height>51</height>
      </rect>
@@ -44,12 +44,15 @@
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>210</y>
-      <width>581</width>
-      <height>51</height>
+      <x>310</x>
+      <y>190</y>
+      <width>481</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -58,15 +61,15 @@
      </font>
     </property>
     <property name="text">
-     <string>нажмите, чтобы вычислить степень, корень, факториал числа</string>
+     <string>нажмите, чтобы вычислить</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>80</x>
       <y>70</y>
-      <width>521</width>
+      <width>451</width>
       <height>61</height>
      </rect>
     </property>
@@ -74,9 +77,9 @@
    <widget class="QTextEdit" name="textEdit_2">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>280</y>
-      <width>521</width>
+      <x>70</x>
+      <y>270</y>
+      <width>461</width>
       <height>61</height>
      </rect>
     </property>
@@ -84,8 +87,8 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>160</y>
+      <x>290</x>
+      <y>150</y>
       <width>261</width>
       <height>26</height>
      </rect>
@@ -115,13 +118,57 @@
      </property>
     </item>
    </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>210</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>вычислить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>80</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>использовать данные из файла</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>280</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>записать данные в файл</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>799</width>
+     <width>842</width>
      <height>26</height>
     </rect>
    </property>

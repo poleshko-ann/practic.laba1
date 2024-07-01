@@ -1,5 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <conio.h>
+#include <QTextStream>
+#include <QTextEdit>
+#include <QFile>
+#include "QString"
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,21 +21,89 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_action_triggered()
 {
-    QApplication::quit();
-}
+    dialogWindow.setModal(true);
+    dialogWindow.exec();
 
-//надо написать
+
+}
 void MainWindow::on_pushButton_clicked()
 {
-    qreal fact;
-    ui->label->setText("Степень, корень, факториал числа вычислены :)");
-    qreal val1=(ui->textEdit)->toPlainText().toDouble();
-    if(val1<=0){ ui->textEdit_2->setText("недопустимость ввода данных");
+    QList<QString> chislo = {"степень", "корень", "факториал"};
+    QString firstBox = ui->comboBox->currentText();
+    qreal chislo1=(ui->textEdit)->toPlainText().toDouble();
+    string checkString = (ui->textEdit)->toPlainText().toStdString();
+   if(chislo1 > 0){
+        ui->label->setText("Степень, корень, факториал числа вычислены :)");
+        if (firstBox == chislo.at(0)){
+            ui->label->setText("Степень числа вычислена :)");
+            chislo1 = pow(chislo1,chislo1);
+            QString str = QString::number(chislo1);
+            ui->textEdit_2->setText(str);
+        }
+        else if (firstBox == chislo.at(1)){
+            ui->label->setText("Корень числа вычислен :)");
+            chislo1 = sqrt(chislo1);
+            QString str = QString::number(chislo1);
+            ui->textEdit_2->setText(str);
+        }
+        else if (firstBox == chislo.at(2)){
+            ui->label->setText("Факториал числа вычислен(от целой части) :)");
+            int res=1;
+            for (int i = 1; i <= chislo1; ++i) {
+                res*=i;
+            }
+            getch();
+            QString str = QString::number(res);
+            ui->textEdit_2->setText(str);
+        }
+    }else{
+       ui->label->setText("Степень, корень, факториал числа не вычислены :(");
+        ui->textEdit_2->setText("недопустимость ввода данных");
     }
-    //QString val2=(ui->comboBox)->toPlainText().toDouble();
-    //if( val2 = "степень"){ ui->textEdit_2->setText(QString::number(val1));}
+}
 
-   // else{ui->textEdit_2->setText(QString::number(val1));}
 
+void MainWindow::on_checkBox_toggled(bool checked)
+{
+    if(checked){ui->pushButton->setEnabled(true);}
+    else{ui->pushButton->setEnabled(false);};
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QFile file("in.txt");
+    if(!file.exists())
+    {
+        ui->label->setText("Файл не существует");
+    }
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        ui->label->setText("Файл не открывается");
+    }
+    QByteArray text = file.readLine();
+    ui->textEdit->setText(text);
+
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QFile fileOut("log.txt");
+    if(!fileOut.exists())
+    {
+        ui->label->setText("Файл не существует");
+    }
+    if(!fileOut.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        ui->label->setText("Файл не открывается");
+    }
+    /*string str = (ui->textEdit_2)->toPlainText().toStdString();
+    fileOut.write(str);
+    fileOut.close();*/
+    QString str = (ui->textEdit_2)->toPlainText();
+    QTextStream out(&fileOut);
+    out << str;
+    fileOut.close();
 }
 
