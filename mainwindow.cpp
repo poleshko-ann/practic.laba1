@@ -90,20 +90,12 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_3_clicked()
 {
     QFile fileOut("log.txt");
-    if(!fileOut.exists())
-    {
-        ui->label->setText("Файл не существует");
-    }
-    if(!fileOut.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        ui->label->setText("Файл не открывается");
-    }
-    /*string str = (ui->textEdit_2)->toPlainText().toStdString();
-    fileOut.write(str);
-    fileOut.close();*/
-    QString str = (ui->textEdit_2)->toPlainText();
+    if(!fileOut.open(QIODevice::WriteOnly|QIODevice::Text))
+        return;
     QTextStream out(&fileOut);
-    out << str;
+
+    out << ui->textEdit_2->toPlainText();
+
     fileOut.close();
 }
 
